@@ -76,3 +76,6 @@ services:
     volumes:
       - ${PWD}/config:/usr/local/etc/redis
 
+networks:
+  my-handy-dandy-network:
+    driver: bridge
