@@ -29,3 +29,4 @@ OK
 ### Sources
 - [How to spin up a redis cluster in Docker](https://www.merge.dev/blog/how-to-spin-up-redis-cluster-in-docker)
 - [Basic Redis CLI commands](https://redis.io/docs/connect/cli/)
+- [Jedis (Java Redis client library)](https://github.com/redis/jedis)
