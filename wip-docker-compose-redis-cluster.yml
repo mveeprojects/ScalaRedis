@@ -1,0 +1,115 @@
+version: '3.8'
+services:
+
+  redis-node-one:
+    container_name: redis-node-one
+    image: redis:7.2.4-alpine
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - 6379:6379
+    networks:
+      - my-handy-dandy-network
+    volumes:
+      - ${PWD}/config:/usr/local/etc/redis
+
+  redis-node-two:
+    container_name: redis-node-two
+    image: redis:7.2.4-alpine
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - 6380:6379
+    networks:
+      - my-handy-dandy-network
+    volumes:
+      - ${PWD}/config:/usr/local/etc/redis
+
+  redis-node-three:
+    container_name: redis-node-three
+    image: redis:7.2.4-alpine
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - 6381:6379
+    networks:
+      - my-handy-dandy-network
+    volumes:
+      - ${PWD}/config:/usr/local/etc/redis
+
+  redis-node-four:
+    container_name: redis-node-four
+    image: redis:7.2.4-alpine
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - 6382:6379
+    networks:
+      - my-handy-dandy-network
+    volumes:
+      - ${PWD}/config:/usr/local/etc/redis
+
+  redis-node-five:
+    container_name: redis-node-five
+    image: redis:7.2.4-alpine
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - 6383:6379
+    networks:
+      - my-handy-dandy-network
+    volumes:
+      - ${PWD}/config:/usr/local/etc/redis
+
+  redis-node-six:
+    container_name: redis-node-six
+    image: redis:7.2.4-alpine
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - 6384:6379
+    networks:
+      - my-handy-dandy-network
+    volumes:
+      - ${PWD}/config:/usr/local/etc/redis
+
+#  redis-cluster-configurator:
+#    container_name: redis-cluster-configurator
+#    image: redis:7.2.4-alpine
+#    command: /usr/local/etc/redis/redis-cluster-create.sh
+#    depends_on:
+#      - redis-node-one
+#      - redis-node-two
+#      - redis-node-three
+#      - redis-node-four
+#      - redis-node-five
+#      - redis-node-six
+#    networks:
+#      - my-handy-dandy-network
+#    volumes:
+#      - ${PWD}/config:/usr/local/etc/redis
+
+  ### Alternative configurator
+  redis-cluster-configurator:
+    container_name: redis-cluster-configurator
+    image: redis:7.2.4-alpine
+    ports:
+      - 6999:6999
+    command: redis-cli -p 6379 --cluster create redis-node-one:6379 redis-node-two:6379 redis-node-three:6379 redis-node-four:6379 redis-node-five:6379 redis-node-six:6379 --cluster-replicas 1 --cluster-yes
+    depends_on:
+      - redis-node-one
+      - redis-node-two
+      - redis-node-three
+      - redis-node-four
+      - redis-node-five
+      - redis-node-six
+    networks:
+      - my-handy-dandy-network
+
+  redis-insight:
+    container_name: redis-insight
+    image: redislabs/redisinsight
+    ports:
+      - 1234:5540
+    depends_on:
+      - redis-cluster-configurator
+    networks:
+      - my-handy-dandy-network
+
+networks:
+  my-handy-dandy-network:
+    driver: bridge

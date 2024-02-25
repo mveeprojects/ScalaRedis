@@ -1,25 +1,20 @@
-import redis.clients.jedis.{HostAndPort, JedisCluster}
+import redis.clients.jedis.Jedis
 
-class RedisClient(cluster: JedisCluster) {
+class RedisClient(cluster: Jedis) {
 
-  def storeAPerson(person: Person): Long = {
-    cluster.msetnx(person.name, person.age.toString)
+  def storeAPerson(person: Person): String = {
+    cluster.set(person.name, person.age.toString)
   }
 
   def getAPersonByName(name: String): String = {
-    cluster.get(s"person:$name")
+    cluster.get(name)
   }
 }
 
 object RedisClient {
-  private val host  = "localhost"
-  private val ports = List(6379, 6380, 6381, 6382, 6383, 6384)
 
-  private val hostAndPorts: java.util.Set[HostAndPort] = new java.util.HashSet[HostAndPort]()
-  ports.map(new HostAndPort(host, _)).foreach(hostAndPorts.add)
-
-  private val cluster = new JedisCluster(hostAndPorts)
+  private val jedis = new Jedis()
 
   def apply(): RedisClient =
-    new RedisClient(cluster)
+    new RedisClient(jedis)
 }

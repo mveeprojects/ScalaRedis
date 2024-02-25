@@ -1,10 +1,14 @@
 # ScalaRedis
 
-### Starting the local Redis cluster
+### Starting the local Redis cluster/container
 
 ```bash
 docker-compose up -d
 ```
+
+At present this fires up a single [redis-stack](https://redis.io/docs/install/install-stack/docker/?utm_source=redisinsight&utm_medium=main&utm_campaign=docker) node which includes RedisInsight (UI for Redis) accessible on port [8001](http://localhost:8001).
+
+[//]: # ([WIP] docker-compose-redis-cluster.yml - still figuring out how to configure a 6-node Redis cluster from scratch. )
 
 ### Example Redis commands
 
@@ -28,5 +32,7 @@ OK
 
 ### Sources
 - [How to spin up a redis cluster in Docker](https://www.merge.dev/blog/how-to-spin-up-redis-cluster-in-docker)
+  - [Also](https://pierreabreu.medium.com/building-redis-cluster-with-docker-compose-9569ddb6414a)
+  - [And](https://ilhamdcp.hashnode.dev/creating-redis-cluster-with-docker-and-compose)
 - [Basic Redis CLI commands](https://redis.io/docs/connect/cli/)
 - [Jedis (Java Redis client library)](https://github.com/redis/jedis)

@@ -1,81 +1,9 @@
-version: '2.4'
+version: '3.8'
 services:
 
-  redis-one:
-    image: redis:7.2.4-alpine
-    command: redis-server /usr/local/etc/redis/redis.conf
+  redis:
+    container_name: redis
+    image: redis/redis-stack:latest
     ports:
       - 6379:6379
-    networks:
-      - my-handy-dandy-network
-    volumes:
-      - ${PWD}/config:/usr/local/etc/redis
-
-  redis-two:
-    image: redis:7.2.4-alpine
-    command: redis-server /usr/local/etc/redis/redis.conf
-    ports:
-      - 6380:6379
-    networks:
-      - my-handy-dandy-network
-    volumes:
-      - ${PWD}/config:/usr/local/etc/redis
-
-  redis-three:
-    image: redis:7.2.4-alpine
-    command: redis-server /usr/local/etc/redis/redis.conf
-    ports:
-      - 6381:6379
-    networks:
-      - my-handy-dandy-network
-    volumes:
-      - ${PWD}/config:/usr/local/etc/redis
-
-  redis-four:
-    image: redis:7.2.4-alpine
-    command: redis-server /usr/local/etc/redis/redis.conf
-    ports:
-      - 6382:6379
-    networks:
-      - my-handy-dandy-network
-    volumes:
-      - ${PWD}/config:/usr/local/etc/redis
-
-  redis-five:
-    image: redis:7.2.4-alpine
-    command: redis-server /usr/local/etc/redis/redis.conf
-    ports:
-      - 6383:6379
-    networks:
-      - my-handy-dandy-network
-    volumes:
-      - ${PWD}/config:/usr/local/etc/redis
-
-  redis-six:
-    image: redis:7.2.4-alpine
-    command: redis-server /usr/local/etc/redis/redis.conf
-    ports:
-      - 6384:6379
-    networks:
-      - my-handy-dandy-network
-    volumes:
-      - ${PWD}/config:/usr/local/etc/redis
-
-  redis-cluster-configure:
-    image: redis:7.2.4-alpine
-    command: /usr/local/etc/redis/redis-cluster-create.sh
-    depends_on:
-      - redis-one
-      - redis-two
-      - redis-three
-      - redis-four
-      - redis-five
-      - redis-six
-    networks:
-      - my-handy-dandy-network
-    volumes:
-      - ${PWD}/config:/usr/local/etc/redis
-
-networks:
-  my-handy-dandy-network:
-    driver: bridge
+      - 8001:8001

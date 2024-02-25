@@ -12,7 +12,7 @@ object Main extends App {
   println("\n--- Storing people in Redis ---")
   people.foreach { p =>
     println(s"Storing ${p.name}")
-    redis.storeAPerson(p)
+    println(redis.storeAPerson(p))
   }
 
   println("\n--- Retrieving people from Redis ---")
