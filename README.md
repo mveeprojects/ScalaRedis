@@ -31,8 +31,13 @@ OK
 ```
 
 ### Sources
-- [How to spin up a redis cluster in Docker](https://www.merge.dev/blog/how-to-spin-up-redis-cluster-in-docker)
-  - [Also](https://pierreabreu.medium.com/building-redis-cluster-with-docker-compose-9569ddb6414a)
-  - [And](https://ilhamdcp.hashnode.dev/creating-redis-cluster-with-docker-and-compose)
 - [Basic Redis CLI commands](https://redis.io/docs/connect/cli/)
 - [Jedis (Java Redis client library)](https://github.com/redis/jedis)
+- [Baeldung: Intro to Jedis](https://www.baeldung.com/jedis-java-redis-client-library)
+- [Redis: Run Redis Stack on Docker](https://redis.io/docs/install/install-stack/docker/?utm_source=redisinsight&utm_medium=main&utm_campaign=docker)
+- [Redis: RedisInsight](https://redis.io/docs/connect/insight/)
+
+[WIP] Setting up a Redis cluster locally via docker-compose:
+- [How to spin up a redis cluster in Docker](https://www.merge.dev/blog/how-to-spin-up-redis-cluster-in-docker)
+  - [Also this from Medium](https://pierreabreu.medium.com/building-redis-cluster-with-docker-compose-9569ddb6414a)
+  - [And this from Hashnode](https://ilhamdcp.hashnode.dev/creating-redis-cluster-with-docker-and-compose)
